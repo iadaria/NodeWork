@@ -13,3 +13,7 @@ GET/POST/PUT/DELETE
 /api/v1/auth
 
 /api/v1/users
+
+
+> pas aux | grep node
+> kill ID

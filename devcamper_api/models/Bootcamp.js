@@ -124,7 +124,7 @@ const BootcampSchema = new mongoose.Schema(
     this.location = {
       type: 'Point',
       coordinates: [loc[0].longitude, loc[0].latitude],
-      //formattedAddress: loc[0],formattedAddress,
+      formattedAddress: `${loc[0].city} ${loc[0].state} ${loc[0].street} ${loc[0].zipcode}, ${loc[0].countryCode}`,
       street: loc[0].streetName,
       city: loc[0].city,
       state: loc[0].stateCode,
