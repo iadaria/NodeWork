@@ -1,0 +1,31 @@
+{
+  "name": "03-complete-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01-express-basics.js",
+  "scripts": {
+    "test": "./test.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.2.3",
+    "deasync": "^0.1.14",
+    "faker": "^4.1.0",
+    "get-port-sync": "^1.0.0",
+    "isomorphic-fetch": "^2.2.1",
+    "mongodb-memory-server": "^5.1.0",
+    "nanohtml": "^1.5.0",
+    "tape": "^4.10.1",
+    "unsplash-js": "^5.0.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cuid": "^2.1.6",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.5.4",
+    "validator": "^10.11.0"
+  }
+}
