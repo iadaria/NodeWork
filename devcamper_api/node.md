@@ -14,6 +14,8 @@ GET/POST/PUT/DELETE
 
 /api/v1/users
 
+>https://github.com/bradtraversy/devcamper-api
+
 
 > pas aux | grep node
 > kill ID

@@ -7,7 +7,7 @@ const Bootcamp = require('../models/Bootcamp');
 // @route   GET /api/v1/courses
 // @route   GET /api/v1/bootcamps/:bootcampId/courses
 // @access  Public
-exports.getCourses = async (req, res, next) => {
+exports.getCourses = asyncHandler(async (req, res, next) => {
     let query;
 
     if(req.params.bootcampId) {
@@ -26,12 +26,12 @@ exports.getCourses = async (req, res, next) => {
         count: courses.length,
         data: courses
     })
-};
+});
 
 // @desc    Get single course
 // @route   GET /api/v1/courses/:id
 // @access  Public
-exports.getCourse = async (req, res, next) => {
+exports.getCourse = asyncHandler(async (req, res, next) => {
 
     const course = await Course.findByIdAndDelete(req.params.id).populate({
         path: 'bootcamp',
@@ -39,8 +39,8 @@ exports.getCourse = async (req, res, next) => {
     });
 
     if(!course) {
-        return new ErrorResponse(`Not course with the id of ${req.params.id}`,
-            404
+        return next(
+            new ErrorResponse(`Not course with the id of ${req.params.id}`, 404)
         );
     }
 
@@ -48,20 +48,23 @@ exports.getCourse = async (req, res, next) => {
         success: true,
         data: course
     });
-};
+});
 
 // @desc    Add course
 // @route   POST /api/v1/bootcamps/:bootcampId/courses
 // @access  Private
-exports.addCourse = async (req, res, next) => {
+exports.addCourse = asyncHandler(async (req, res, next) => {
 
     req.body.bootcamp = req.params.bootcampId;
 
     const bootcamp = await Bootcamp.findById(req.params.bootcampId);
 
     if(!bootcamp) {
-        return new ErrorResponse(`No bootcamp with the id of ${req.params.bootcampId}`,
-            404
+        return next(
+            new ErrorResponse(
+                `No bootcamp with the id of ${req.params.bootcampId}`,
+                404
+            )
         );
     }
 
@@ -71,18 +74,18 @@ exports.addCourse = async (req, res, next) => {
         success: true,
         data: course
     });
-};
+});
 
 // @desc    Update course
 // @route   PUT /api/v1/courses/:id
 // @access  Private
-exports.updateCourse = async (req, res, next) => {
+exports.updateCourse = asyncHandler(async (req, res, next) => {
 
     let course = await Course.findById(req.params.id);
 
     if(!course) {
-        return new ErrorResponse(`Not course with the id of ${req.params.id}`,
-            404
+        return next(
+            new ErrorResponse(`Not course with the id of ${req.params.id}`, 404)
         );
     }
 
@@ -95,19 +98,19 @@ exports.updateCourse = async (req, res, next) => {
         success: true,
         data: course
     });
-};
+});
 
 
 // @desc    Delete course
 // @route   DELETE /api/v1/courses/:id
 // @access  Private
-exports.deleteCourse = async (req, res, next) => {
+exports.deleteCourse = asyncHandler(async (req, res, next) => {
 
     const course = await Course.findById(req.params.id);
 
     if(!course) {
-        return new ErrorResponse(`Not course with the id of ${req.params.id}`,
-            404
+        return next(
+            new ErrorResponse(`Not course with the id of ${req.params.id}`,404)
         );
     }
 
@@ -117,4 +120,4 @@ exports.deleteCourse = async (req, res, next) => {
         success: true,
         data: {}
     });
-};
+});
